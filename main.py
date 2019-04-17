@@ -20,7 +20,7 @@ class Timer(QMainWindow) :
         self.initUI()
 
         # gestion des signaux
-        print  "My lovely timer!"
+        print( "My lovely timer!" )
         signal.signal(signal.SIGINT, self.signal_handler)
 
         # initialisation du timer
@@ -31,8 +31,8 @@ class Timer(QMainWindow) :
 
     def initUI(self):
         self.form_widget = FormWidget(self)
-        _widget = QtGui.QWidget()
-        _layout = QtGui.QVBoxLayout(_widget)
+        _widget = QWidget()
+        _layout = QVBoxLayout(_widget)
         _layout.addWidget(self.form_widget)
         self.setCentralWidget(_widget)
         self.form_widget.write_button.clicked.connect(self.handlebutton)
@@ -41,7 +41,7 @@ class Timer(QMainWindow) :
         self.setWindowTitle("start counting Mongrel !")
 
     def tick(self):
-        #print str(time.sftime())
+        #print( str(time.sftime())
         y = time.time() - self.start_time
         self.current_time = str(datetime.timedelta(seconds=int(y)))
         # numero du sous-titre
@@ -51,8 +51,8 @@ class Timer(QMainWindow) :
         # le debut du timer
         self.form_widget.label_time.setText(self.current_time)
 
-        print self.current_time
-        print 'tick'
+        print( self.current_time )
+        print("tick" )
 
     def handlebutton(self):
         self.last_subtitle_time = self.current_time
@@ -68,13 +68,13 @@ class Timer(QMainWindow) :
 
     def signal_handler(self,*args):
         """handle pour le signal SIGINT"""
-        sys.stderr.write('\r')
+        sys.stderr.write("\r")
         if QMessageBox.question(None, "lol", "Voulez-vous quitter ?",
                                 QMessageBox.Yes | QMessageBox.No, QMessageBox.No) == QMessageBox.Yes:
             QApplication.quit()
 
 
-class FormWidget(QtGui.QWidget):
+class FormWidget(QWidget):
 
     def __init__(self, parent):
         super(FormWidget, self).__init__(parent)
@@ -82,21 +82,21 @@ class FormWidget(QtGui.QWidget):
         self.__layout()
 
     def __controls(self):
-        self.label = QtGui.QLabel("Nombre de personne : ")
-        self.txted = QtGui.QLineEdit()
-        self.lbled = QtGui.QLabel("Open/close")
-        self.cmbox = QtGui.QComboBox()
-        self.label_time = QtGui.QLabel()
-        self.write_button = QtGui.QPushButton("write buffer", self)
-        self.srt_label =  QtGui.QLabel()
-        self.delta =  QtGui.QLabel()
+        self.label = QLabel("Nombre de personne : ")
+        self.txted = QLineEdit()
+        self.lbled = QLabel("Open/close")
+        self.cmbox = QComboBox()
+        self.label_time = QLabel()
+        self.write_button = QPushButton("write buffer", self)
+        self.srt_label = QLabel()
+        self.delta = QLabel()
 
     def __layout(self):
-        self.vbox = QtGui.QVBoxLayout()
-        self.hbox = QtGui.QHBoxLayout()
-        self.h2Box = QtGui.QHBoxLayout()
-        self.h3box = QtGui.QHBoxLayout()
-        self.h4box = QtGui.QHBoxLayout()
+        self.vbox = QVBoxLayout()
+        self.hbox = QHBoxLayout()
+        self.h2Box = QHBoxLayout()
+        self.h3box = QHBoxLayout()
+        self.h4box = QHBoxLayout()
 
         self.hbox.addWidget(self.label)
         self.hbox.addWidget(self.txted)
@@ -118,7 +118,7 @@ class FormWidget(QtGui.QWidget):
         self.setLayout(self.vbox)
 
 def main():
-    app = QtGui.QApplication(sys.argv)
+    app = QApplication(sys.argv)
     app.setQuitOnLastWindowClosed(False)
 
     name = sys.argv[1]
@@ -127,7 +127,8 @@ def main():
 
     sys.exit(app.exec_())
 
+
 # run event loop so python doesn't exit
-if __name__ == '__main__':
+if __name__ == "__main__":
 
     main()
