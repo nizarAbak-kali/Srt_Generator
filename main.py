@@ -1,21 +1,17 @@
-#!/usr/local/bin/python3
-
 import sys
 import time
 import signal
 import datetime
-from PyQt4 import QtGui, QtCore
-from PyQt4.QtCore import QTimer, Qt
-from PyQt4.QtGui import QApplication, QMessageBox
+from PyQt5.Qt import QTimer
+from PyQt5.QtWidgets import QApplication, QMessageBox, QMainWindow, QWidget, QVBoxLayout, QLabel, QLineEdit, QComboBox, \
+    QPushButton, QHBoxLayout
 
 
-
-class Timer(QtGui.QMainWindow) :
+class Timer(QMainWindow) :
 
     def __init__(self, parent=None, filename="", srt_num=0):
-        QtGui.QMainWindow.__init__(self)
 
-
+        QMainWindow.__init__(self)
         self.srt_filename = filename
         self.start_time = time.time()
         self.srt_number = srt_num
